@@ -7,11 +7,15 @@ import org.hibernate.annotations.Parameter;
 
 import com.dnb.devConnector.utils.CustomIdGenerator;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,14 +40,14 @@ public class Education {
 	}
 	@Id
 	@NotBlank(message = "experience id should not be blank")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "experience_seq") //if generator is specified, then it'll know to use its wrapper class
-	@GenericGenerator(name = "experience_seq", strategy = "com.dnb.devConnector.utils.CustomIdGenerator",
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "education_seq") //if generator is specified, then it'll know to use its wrapper class
+	@GenericGenerator(name = "education_seq", strategy = "com.dnb.devConnector.utils.CustomIdGenerator",
 			parameters = {@Parameter(name =CustomIdGenerator.INCREMENT_PARAM, value = "50"),
-			@Parameter(name=CustomIdGenerator.VALUE_PREFIX_PARAMETER, value = "exp_"),
+			@Parameter(name=CustomIdGenerator.VALUE_PREFIX_PARAMETER, value = "edu_"),
 			@Parameter(name=CustomIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d"),
 			@Parameter(name=CustomIdGenerator.FLAG_PARAMETER, value = "true")
 	})
-	private String eduid;
+	private String educationId;
 	
 	@Column(nullable = false)
 	private String school;
@@ -51,6 +55,10 @@ public class Education {
 	private String fieldOfStudy;
 	private LocalDate fromDate;
 	private LocalDate toDate;
-	private boolean currentSchool;
+	private Boolean currentSchool;
 	private String programDescription;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "profileId")
+	private CreateProfile createProfile;
 }

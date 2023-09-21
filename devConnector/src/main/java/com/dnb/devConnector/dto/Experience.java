@@ -7,11 +7,15 @@ import org.hibernate.annotations.Parameter;
 
 import com.dnb.devConnector.utils.CustomIdGenerator;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,7 +47,7 @@ public class Experience {
 			@Parameter(name=CustomIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d"),
 			@Parameter(name=CustomIdGenerator.FLAG_PARAMETER, value = "true")
 	})
-	private String expid;
+	private String experienceId;
 	
 	@Column(nullable = false)
 	private String jobTitle;
@@ -51,6 +55,10 @@ public class Experience {
 	private String location;
 	private LocalDate fromDate;
 	private LocalDate toDate;
-	private boolean currentJob;
+	private Boolean currentJob;
 	private String jobDescription;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "profileId")
+	private CreateProfile createProfile;
 }

@@ -7,11 +7,15 @@ import org.hibernate.annotations.Parameter;
 
 import com.dnb.devConnector.utils.CustomIdGenerator;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -47,4 +51,8 @@ public class CreateProfile {
 	private String youtubeURL;
 	private String linkedinURL;
 	private String instagramURL;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId")
+	private RegisterUser registerUser;
 }

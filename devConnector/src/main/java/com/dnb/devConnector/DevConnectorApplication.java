@@ -19,11 +19,11 @@ public class DevConnectorApplication {
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = SpringApplication.run(DevConnectorApplication.class, args);
 		
-		RegisterUserService registerUserService = applicationContext.getBean(RegisterUserService.class);
-		
-		RegisterUser registerUser = new RegisterUser("Leia", "leia@gmail.com", "leia456");
-		
-		registerUserService.createUser(registerUser);
+//		RegisterUserService registerUserService = applicationContext.getBean(RegisterUserService.class);
+//		
+//		RegisterUser registerUser = new RegisterUser("Leia", "leia@gmail.com", "leia456");
+//		
+//		registerUserService.createUser(registerUser);
 		
 		//DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		

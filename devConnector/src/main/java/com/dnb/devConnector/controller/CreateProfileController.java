@@ -12,7 +12,8 @@ import com.dnb.devConnector.dto.CreateProfile;
 public class CreateProfileController {
 
 	@PostMapping("/create")
-	public CreateProfile create(@RequestBody CreateProfile createProfile) {
+	public ResponseEntity<?> create(@RequestBody CreateProfile createProfile) {
+		
 		return createProfile;
 	}
 	
