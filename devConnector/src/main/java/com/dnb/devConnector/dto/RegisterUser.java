@@ -18,6 +18,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
@@ -55,10 +56,10 @@ public class RegisterUser {
 	private String emailAddress;
 	@jakarta.validation.constraints.Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\\\d)[A-Za-z\\\\d]{8,}$")
 	private String password;
-	@NotBlank
-	@Transient
-	private String confirmPassword;
+//	@NotBlank
+//	@Transient
+//	private String confirmPassword;
 	
-//	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy =  "registerUser")
-//	private List<CreateProfile> list = new ArrayList<>();
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy =  "registerUser")
+	private CreateProfile createProfile;
 }

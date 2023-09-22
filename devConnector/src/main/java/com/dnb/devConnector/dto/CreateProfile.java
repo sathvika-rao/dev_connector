@@ -1,5 +1,7 @@
 package com.dnb.devConnector.dto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -15,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -46,13 +49,16 @@ public class CreateProfile {
 	private String skills;
 	private String githubUsername;
 	private String bio;
-	private String twitterURL;
-	private String facebookURL;
-	private String youtubeURL;
-	private String linkedinURL;
-	private String instagramURL;
+	private SocialNetworkLinks links;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId")
 	private RegisterUser registerUser;
+	
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "createProfile")
+	private List<Experience> expList = new ArrayList<Experience>();
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "createProfile")
+	private List<Education> eduList = new ArrayList<Education>();
 }

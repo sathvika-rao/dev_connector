@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import com.dnb.devConnector.dto.Education;
+import com.dnb.devConnector.exceptions.IdNotFoundException;
 
 public interface EducationService {
 	
-	public Education createEducation(Education education);
+	public Education createEducation(Education education) throws IdNotFoundException;
 	
 	public Optional<Education> getEducationById(String educationId); 
 	

@@ -58,7 +58,7 @@ public class Experience {
 	private Boolean currentJob;
 	private String jobDescription;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "profileId")
 	private CreateProfile createProfile;
 }

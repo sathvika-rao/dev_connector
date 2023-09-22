@@ -23,19 +23,19 @@ public class RegisterUserServiceImpl implements RegisterUserService {
 	}
 
 	@Override
-	public Optional<RegisterUser> getUserByEmail(String email) {
+	public Optional<RegisterUser> getUserById(String userId) {
 		// TODO Auto-generated method stub
-		return registerUserRepo.findById(email);
+		return registerUserRepo.findById(userId);
 	}
 
 	@Override
-	public boolean deleteUserByEmail(String email) throws EmailNotFoundException {
-		if(registerUserRepo.existsById(email)) {
-			registerUserRepo.deleteById(email);
+	public boolean deleteUserById(String userId) {
+		if(registerUserRepo.existsById(userId)) {
+			registerUserRepo.deleteById(userId);
 			return true;
 		}
 		else
-			throw new EmailNotFoundException("Email not found");
+			return false;
 	}
 
 	@Override

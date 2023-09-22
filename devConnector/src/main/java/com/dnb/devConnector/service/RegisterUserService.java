@@ -10,9 +10,9 @@ public interface RegisterUserService {
 	
 	public RegisterUser createUser(RegisterUser registerUser);
 	
-	public Optional<RegisterUser> getUserByEmail(String email);
+	public Optional<RegisterUser> getUserById(String userId);
 	
-	public boolean deleteUserByEmail(String email) throws EmailNotFoundException;
+	public boolean deleteUserById(String userId);
 	
 	public List<RegisterUser> getUsers();
 	

@@ -6,6 +6,7 @@ import com.dnb.devConnector.dto.CreateProfile;
 import com.dnb.devConnector.dto.Education;
 import com.dnb.devConnector.dto.Experience;
 import com.dnb.devConnector.dto.RegisterUser;
+import com.dnb.devConnector.dto.SocialNetworkLinks;
 import com.dnb.devConnector.payload.request.CreateProfileRequest;
 import com.dnb.devConnector.payload.request.EducationRequest;
 import com.dnb.devConnector.payload.request.ExperienceRequest;
@@ -14,12 +15,14 @@ import com.dnb.devConnector.payload.request.RegisterUserRequest;
 @Component
 public class RequestToEntityMapper {
 	
+	SocialNetworkLinks links = new SocialNetworkLinks();
+	
 	public RegisterUser getRegisterUser(RegisterUserRequest registerUserRequest) {
 		RegisterUser user= new RegisterUser();
 		user.setName(registerUserRequest.getName());
 		user.setEmailAddress(registerUserRequest.getEmailAddress());
 		user.setPassword(registerUserRequest.getPassword());
-		user.setConfirmPassword(registerUserRequest.getConfirmPassword());
+		//user.setConfirmPassword(registerUserRequest.getConfirmPassword());
 		return user;
 	}
 	
@@ -33,11 +36,11 @@ public class RequestToEntityMapper {
 		profile.setSkills(profileRequest.getSkills());
 		profile.setGithubUsername(profileRequest.getGithubUsername());
 		profile.setBio(profileRequest.getBio());
-		profile.setTwitterURL(profileRequest.getTwitterURL());
-		profile.setFacebookURL(profileRequest.getFacebookURL());
-		profile.setYoutubeURL(profileRequest.getYoutubeURL());
-		profile.setLinkedinURL(profileRequest.getLinkedinURL());
-		profile.setInstagramURL(profileRequest.getInstagramURL());
+		profile.getLinks().setTwitterURL(profileRequest.getLinks().getTwitterURL());
+		profile.getLinks().setFacebookURL(profileRequest.getLinks().getFacebookURL());
+		profile.getLinks().setYoutubeURL(profileRequest.getLinks().getYoutubeURL());
+		profile.getLinks().setLinkedinURL(profileRequest.getLinks().getLinkedinURL());  
+		profile.getLinks().setInstagramURL(profileRequest.getLinks().getInstagramURL());;
 		
 		RegisterUser user=new RegisterUser();
 		user.setUserId(profileRequest.getUserId());

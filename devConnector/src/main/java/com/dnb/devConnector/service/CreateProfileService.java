@@ -9,11 +9,11 @@ import com.dnb.devConnector.exceptions.IdNotFoundException;
 
 public interface CreateProfileService {
 
-	public CreateProfile createProfile(CreateProfile createProfile);
+	public CreateProfile createProfile(CreateProfile createProfile) throws IdNotFoundException;
 
 	public Optional<CreateProfile> getProfileById(String id);
 
-	public boolean deleteProfileById(String id) throws IdNotFoundException;
+	public boolean deleteProfileById(String id);
 
 	public List<CreateProfile> getProfiles();
 

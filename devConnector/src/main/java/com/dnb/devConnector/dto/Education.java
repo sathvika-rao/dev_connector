@@ -58,7 +58,7 @@ public class Education {
 	private Boolean currentSchool;
 	private String programDescription;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "profileId")
 	private CreateProfile createProfile;
 }
