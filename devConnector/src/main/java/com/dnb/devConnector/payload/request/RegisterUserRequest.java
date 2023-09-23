@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class RegisterUserRequest {
 	private String name;
-	@Email
+	@NotBlank(message = "email address should not be blank")
 	private String emailAddress;
-	@jakarta.validation.constraints.Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\\\d)[A-Za-z\\\\d]{8,}$")
+	//@jakarta.validation.constraints.Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\\\d)[A-Za-z\\\\d]{8,}$")
 	private String password;
 //	@NotBlank
 //	@Transient

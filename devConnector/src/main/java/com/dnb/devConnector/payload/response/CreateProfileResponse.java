@@ -21,7 +21,7 @@ public class CreateProfileResponse {
 	private String githubUsername;
 	private String bio;
 	private SocialNetworkLinks links;
-	private RegisterUser registerUser;
+	private String userId;
 	private List<Experience> expList = new ArrayList<Experience>();
 	private List<Education> eduList = new ArrayList<Education>();
 }

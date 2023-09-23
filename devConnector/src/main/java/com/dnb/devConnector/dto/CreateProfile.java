@@ -11,6 +11,7 @@ import com.dnb.devConnector.utils.CustomIdGenerator;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -49,7 +50,8 @@ public class CreateProfile {
 	private String skills;
 	private String githubUsername;
 	private String bio;
-	private SocialNetworkLinks links;
+	@Embedded
+	private SocialNetworkLinks links = new SocialNetworkLinks();
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId")

@@ -54,7 +54,7 @@ public class RegisterUser {
 	private String userId;
 	private String name;
 	private String emailAddress;
-	@jakarta.validation.constraints.Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\\\d)[A-Za-z\\\\d]{8,}$")
+	//@jakarta.validation.constraints.Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\\\d)[A-Za-z\\\\d]{8,}$")
 	private String password;
 //	@NotBlank
 //	@Transient

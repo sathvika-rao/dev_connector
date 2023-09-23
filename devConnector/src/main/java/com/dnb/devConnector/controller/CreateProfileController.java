@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dnb.devConnector.dto.CreateProfile;
 import com.dnb.devConnector.exceptions.IdNotFoundException;
+import com.dnb.devConnector.mapper.EntityToResponseMapper;
 import com.dnb.devConnector.mapper.RequestToEntityMapper;
 import com.dnb.devConnector.payload.request.CreateProfileRequest;
+import com.dnb.devConnector.payload.response.CreateProfileResponse;
 import com.dnb.devConnector.service.CreateProfileService;
 
 import jakarta.validation.Valid;
@@ -31,13 +33,19 @@ public class CreateProfileController {
 
 	@Autowired
 	CreateProfileService profileService;
+	
+	@Autowired
+	EntityToResponseMapper entityToResponseMapper;
 
 	@PostMapping("/create")
 	public ResponseEntity<?> createProfile(@Valid @RequestBody CreateProfileRequest profileRequest) {
-		CreateProfile profile = mapper.getProfile(profileRequest);
+		
 		try {
+			CreateProfile profile = mapper.getProfile(profileRequest);
+			System.out.println("Hello");
 			CreateProfile profile2 = profileService.createProfile(profile);
-			return new ResponseEntity(profile2, HttpStatus.CREATED);
+			CreateProfileResponse response = entityToResponseMapper.getProfileResponse(profile2);
+			return new ResponseEntity(response, HttpStatus.CREATED);
 		} catch (IdNotFoundException e) {
 			// TODO Auto-generated catch block
 			return ResponseEntity.badRequest().body(e.getMessage());

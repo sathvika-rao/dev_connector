@@ -39,7 +39,7 @@ public class RegisterUserController {
 		return new ResponseEntity(user2, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/usr/{userId}")
+	@GetMapping("/uid/{userId}")
 	public ResponseEntity<?> getUserById(@PathVariable("userId") String userId) throws IdNotFoundException {
 		Optional<RegisterUser> optional = userService.getUserById(userId);
 		if (optional.isPresent()) {

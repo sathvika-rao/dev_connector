@@ -27,6 +27,7 @@ public class EducationServiceImpl implements EducationService {
 		Optional<CreateProfile> profile = profileRepository.findById(education.getCreateProfile().getProfileId());
 
 		if (profile.isPresent()) {
+			System.out.println("Hello");
 			education.setCreateProfile(profile.get());
 			return educationRepository.save(education);
 		} else {
